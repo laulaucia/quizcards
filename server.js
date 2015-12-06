@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // connect to database
-var dbName = 'seed-mean-html';
+var dbName = 'quiz-cards-html';
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/' + dbName);    
 
 // serve public folder as static assets on the root route
@@ -51,7 +51,7 @@ app.get('/templates/:name', routes.templates);
 
 // API ROUTES
 // post routes
-app.use('/api/posts', routes.postRouter);
+app.use('/api/cards', routes.postRouter);
 
 
 // ALL OTHER ROUTES (ANGULAR HANDLES)

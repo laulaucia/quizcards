@@ -2,17 +2,15 @@
  * ANGULAR APP.JS
  */
 
-'use strict';
-
-angular.module('myApp', ['ui.router',
-                         'myApp.controllers'])
+angular.module('quizCards', ['ui.router',
+                         'quizCards.controllers', 'ngResource'])
 
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
-      .state('posts', {
+      .state('cards', {
         url: "/",
-        templateUrl: 'templates/posts-index',
-        controller: 'PostsIndexCtrl'
+        templateUrl: 'templates/cards-index',
+        controller: 'CardsIndexCtrl'
       });
 
     $urlRouterProvider.otherwise("/state1");

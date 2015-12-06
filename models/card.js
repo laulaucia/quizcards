@@ -1,17 +1,22 @@
 /*
- * POST MODEL
+ * CARD MODEL
  */
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var PostSchema = new Schema({
+var CardSchema = new Schema({
     created_at: { 
       type: Date, 
       default: Date.now() 
     },
     updated_at: { type: Date },
-    content: { 
+    answer: { 
+      type: String, 
+      required: true, 
+      trim: true 
+    },
+    prompt:{ 
       type: String, 
       required: true, 
       trim: true 
@@ -19,7 +24,7 @@ var PostSchema = new Schema({
 });
 
 // MIDDLEWARE
-PostSchema.pre('save', function(next){
+CardSchema.pre('save', function(next){
   // set a created_at and update updated_at
   now = new Date();
   this.updated_at = now;
@@ -29,7 +34,7 @@ PostSchema.pre('save', function(next){
   next();
 });
 
-// export post model
-var Post = mongoose.model('Post', PostSchema);
+// export card model
+var Card = mongoose.model('Card', CardSchema);
 
-module.exports = Post;
+module.exports = Card;

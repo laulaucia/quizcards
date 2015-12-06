@@ -10,6 +10,6 @@
 describe('Home Page', function() {
   it('should have the correct title', function() {
     browser.get('http://localhost:1337/');
-    expect(browser.getTitle()).toEqual('MEAN Seed');
+    expect(browser.getTitle()).toEqual('Quiz Cards');
   });
 })
