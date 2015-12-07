@@ -5,7 +5,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var cards = require('card.js');
+var cards = require('../models/card.js');
 
 var DeckSchema = new Schema({
     created_at: { 
@@ -13,6 +13,13 @@ var DeckSchema = new Schema({
       default: Date.now() 
     },
     updated_at: { type: Date },
+    name: { 
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String
+    },
     cards: [{type: Schema.Types.ObjectId, ref: 'Card'}]
 
     
@@ -33,3 +40,4 @@ DeckSchema.pre('save', function(next){
 var Deck = mongoose.model('Deck', DeckSchema);
 
 module.exports = Deck;
+

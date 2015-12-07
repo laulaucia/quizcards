@@ -1,16 +1,61 @@
-<h3 class='pull-left'>Cards</h3>
-<form ng-submit="createCard()">
-  <div class='form-group'>
-    <textarea class='form-control' ng-model="card.content"></textarea>
+<div ng-controller="cardsController as cards">
+<h1 class="text-center">QUIZ CARDS</h1>
+<h6 class="text-center">make and keep track of your own flashcards</h6>
+  <h3 class="text-center">Make a new card!</h3>
+  <div class="container">
+    <form name="newCardForm" ng-submit="cards.createNewCard()">
+
+      <div class="row">
+      <div class="col-sm-3">
+          <label for="new-card-prompt">New card prompt</label><br>
+          <input type="textarea" id="new-card-prompt" ng-model="cards.newCard.prompt" required/>
+        </div>
+        <div class="col-sm-3">
+          <label for="new-card-answer">New card answer</label><br>
+          <input type="textarea" id="new-card-answer"ng-model="cards.newCard.answer" required/>
+        </div>
+        <div class="col-sm-3">
+          <label for="deck-name">Deck Name</label><br>
+          <input ng-model="cards.newCard.deck" type="text" id="deck-name" value="{{deck.name}}" />
+        </div>
+        <div class="col-sm-3">
+          <button type="submit" class='btn btn-default save'>Save</button>
+        </div>
+      </div>
+    </form>
   </div>
-  <button type="submit" class='btn btn-default'>Save</button>
-</form>
-<hr>
-<ul class='list-group'>
-  <li ng-repeat="card in cards" class='list-group-item'>
-    {{card.body}}
-    <a href="#" class='pull-right' ng-click="deleteCard(card)">
-      <i class='icon ion-close-circled'></i>
-    </a>
-  </li>
-</ul>
+  <hr>
+  <div class="row">
+    <div class="col-sm-4">
+      <form name="deckFilter">
+        <label for="selectDeck">Select a Deck</label>
+        <select name="deckFilter" id="deckFilter" ng-model="data.deckFilter">
+          <option ng-repeat="option in cards.cards" value="{{option.deck}}">{{option.deck}}</option>
+        </select>
+      </form>
+    </div>
+    <div class="col-sm-4">
+      <tt>deckFilter = {{data.deckFilter}}</tt>
+    </div>
+  </div>
+  <hr>
+
+
+  <section class="container-fluid" >
+    <div class="row">
+      <div class='col-xs-6 col-md-4 col-lg-3 text-center' ng-repeat="card in cards.cards | filter: card.deck : data.deckFilter" ng-click="asking=!asking" ng-show="asking || !asking">
+        <div class="card flipOutX" ng-class="{'answer':answer}" ng-click="answer=!answer" >
+          <h4 ng-show="asking" >{{card.answer}}</h4>
+          <h4 ng-show="!asking" ng-hide="asking">{{card.prompt}}</h4>
+          <h6>{{card.deck}}</h6>
+            <!-- <div class='pull-right' ng-click="deleteCard()">
+              <a href="#" ><i class='glyphicon glyphicon-remove'></i></a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+</div>

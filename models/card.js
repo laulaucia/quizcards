@@ -5,6 +5,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+var deck = require('../models/deck.js');
+
 var CardSchema = new Schema({
     created_at: { 
       type: Date, 
@@ -20,7 +22,8 @@ var CardSchema = new Schema({
       type: String, 
       required: true, 
       trim: true 
-    }
+    },
+    deck: {type: Number, ref: 'Deck'}
 });
 
 // MIDDLEWARE

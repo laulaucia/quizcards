@@ -3,7 +3,8 @@ var cardRouter = express.Router();
 
 var Card = require('../models/card.js');
 
-cardRouter.route('/')  // translates to '/api/cards/'
+
+cardRouter.route('cards')  // translates to '/api/cards/'
   // send all cards
   .get(function(request, response){
       Card.find().sort('-created_at').exec(function(err, cards) {

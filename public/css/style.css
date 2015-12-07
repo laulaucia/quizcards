@@ -1,1 +1,80 @@
 /*PUT YOUR STYLES HERE*/
+
+
+.card {
+  background: purple;
+  border-color: purple;
+  color: white;
+  padding: 1rem;
+  min-height: 16rem;
+  position: relative;
+  margin-bottom: 10px;
+  border-radius: 30px;
+}
+.card h4{
+  padding-top: 10%;
+}
+
+.card h6 {
+  position: absolute;
+  font-size: 1rem;
+  margin-top: 1.618rem;
+  opacity: 0.5;
+  bottom: 0.618rem;
+  left: 1rem;
+
+}
+.card h6:after {
+  font-size: 80%;
+  margin-left: 1px;
+}
+
+.card.answer{
+  background-color: orange;
+}
+.deck {
+  background: purple;
+  border-color: purple;
+  color: white;
+  padding: 1rem;
+  min-height: 16rem;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.deck h6 {
+  position: absolute;
+  font-size: 0.8rem;
+  margin-top: 1.618rem;
+  opacity: 0.5;
+  bottom: 0.618rem;
+  left: 1rem;
+}
+.deck h6:after {
+  font-size: 60%;
+  margin-left: 1px;
+}
+
+.container {
+  margin: 4rem;
+}
+
+
+.row {
+  margin: 0;
+}
+
+form input{
+    padding: 10px;
+    border-radius: 20px;
+    
+}
+
+form input:active{
+  border-radius: 20px;
+}
+
+.btn .save{
+  margin-top: 20px;
+  border: 10px pink;
+}

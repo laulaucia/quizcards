@@ -51,7 +51,8 @@ app.get('/templates/:name', routes.templates);
 
 // API ROUTES
 // post routes
-app.use('/api/cards', routes.postRouter);
+app.use('/api/cards', routes.cardRouter);
+app.use('/api/decks', routes.deckRouter);
 
 
 // ALL OTHER ROUTES (ANGULAR HANDLES)

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" ng-app="quizCards">
   <head>
     <meta charset="utf8">
@@ -16,40 +15,48 @@
   </head>
 
   <body ng-controller="MainCtrl">
-    <nav class="navbar navbar-default animated slideInDown">
-      <div class="container-fluid">
+    <!-- <nav class="navbar navbar-default animated slideInDown">
+      <div class="container-fluid"> -->
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <!-- <div class="navbar-header"> -->
+          <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Quiz Cards</a>
-        </div>
+          </button> -->
+         <!--  <a class="navbar-brand" href="/">Quiz Cards</a>
+        </div> -->
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <!--   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
           </ul>
           <ul class="nav navbar-nav navbar-right">
-<!--             <li ng-hide='isLoggedIn' ng-cloak><a href="/login">Login</a></li>
-            <li ng-hide='isLoggedIn' ng-cloak><a href="/sign-up">Signup</a></li>
- -->            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">login</a></li>
-                <li><a href="#">Decks</a></li>
+                <li><a ui-sref="decks">Decks</a></li>
+                <li><a ui-sref="card">card</a></li>
+                <li><a ui-sref="cards">Cards</a></li>
               </ul>
             </li>
           </ul>
         </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+     <!--  </div>/.container-fluid
+    </nav> --> 
 
     <!-- ANGULAR APP INSERTER HERE -->
-    <div ui-view class="container"></div>
+    <div ui-view class="container-fluid"></div>
+
+    <!-- CARDS RENDER HERE-->
+<!--     <section class="container-fluid" ng-controller="cardsController as cards">
+      <div class="row">
+        <div class='col-sm-6 col-md-6 col-lg-4' ng-repeat="card in cards.all">
+          <card prompt="{{card.prompt}}" answer="{{card.answer}}"></card>
+        </div>
+      </div>
+    </section> -->
     
   </body>
   
@@ -68,5 +75,9 @@
   <!-- YOUR SCRIPTS -->
   <script type="text/javascript" src="/app.js"></script>
   <script type="text/javascript" src="/controllers.js"></script>
-  <script type="text/javascript" src="/"></script>
+  <script type="text/javascript" src="/cardController.js"></script>
+  <script type="text/javascript" src="/services.js"></script>
+  <script type="text/javascript" src="/cardView.js"></script>
+  <script type="text/javascript" src="/deckView.js"></script>
+
 </html>

@@ -12,3 +12,5 @@ exports.templates = function (req, res) {
 };
 
 exports.cardRouter =  require('./cards.js');
+
+exports.deckRouter =  require('./decks.js');
