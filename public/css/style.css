@@ -10,6 +10,8 @@
   position: relative;
   margin-bottom: 10px;
   border-radius: 30px;
+  animation-name: flipInX;
+  animation-duration: 1s;
 }
 .card h4{
   padding-top: 10%;
@@ -31,6 +33,8 @@
 
 .card.answer{
   background-color: orange;
+  animation-name: flipInY;
+  animation-duration: 2s;
 }
 .deck {
   background: purple;
