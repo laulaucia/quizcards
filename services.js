@@ -1,30 +1,39 @@
 angular.module('quizCards')
-	.factory('CardService', function($resource, myConfig){
-		return $resource(myConfig.api_url+'Cards',{}, {
-		query:{
-			method: 'GET',
-			headers: {
-				'X-Parse-Application-Id': myConfig.parse_application_id,
-				'X-Parse-REST-API-KEY': myConfig.parse_rest_api_key
-			}
+	.factory('Card', function(){
+			var factory = {};
 
-		},
-		update: {
-			method:'PUT',
-			headers: {
-				'X-Parse-Application-Id': myConfig.parse_application_id,
-				'X-Parse-REST-API-KEY': myConfig.parse_rest_api_key
-			}
-		},
-		create:{
-			method: 'POST',
-			headers: {
-				'X-Parse-Application-Id': myConfig.parse_application_id,
-				'X-Parse-REST-API-KEY': myConfig.parse_rest_api_key
-			}
-		}
+			factory.all = function(){
+				var Card = Parse.Object.extend("Card");
+				var query = new Parse.Query(Card);
+				query.equalTo("createdBy", Parse.Deck.User.current());
+				return query.find();
+			};
 
+			factory.save = function(card){
+				var Card = Parse.Object.extend("Card");
+				var newCard = new Card(); // instantiating card object instance
+				newCard.set("prompt", card.prompt);
+				newCard.set("answer", card.answer);
+				newCard.set("deck", card.deck);
+				newCard.set("createdBy", Parse.User.current());
+				return newCard.save();
+			};
+
+			factory.destroy = function(cardId, success, err) {
+            var Card = Parse.Object.extend("Card");
+            var query = new Parse.Query(Card);
+            query.get(cardId)
+                .then(function(card) {
+                    card.destroy(function() {
+                        success();
+                    }, function() {
+                        console.log("error");
+                    });
+                }, function(card, error) {
+                    console.log("object and error", object, error);
+                });
+        };
+
+		return factory;
 	});
-// 	.factory('Deck', function($window, $resource){
-// 		return $resource($window.location.origin+'/api/decks/:id', {id:'@id'}, {update: {method:'PUT'}});
-	});
+		
