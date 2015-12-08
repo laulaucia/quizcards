@@ -31,7 +31,7 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
 
     var Card = Parse.Object.extend("CardService");
     var card = new Card();
-    $scope.hello = "the cards controller wooo!";
+    $scope.hello = "the cards controller hi hi ";
     $scope.newCard= {};
     $scope.cards = [];
 
