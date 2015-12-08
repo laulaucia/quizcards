@@ -2,6 +2,25 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
   app.run(function(){
     Parse.initialize("uSFbSM6EMj5Zb2dCyuwQaPxzKuKkAy4sifhq9hWh", "A92NpYrHsWzXfP9OPcSzEI70aQgk6dL4KzfwvUb1");
   });
+  app.config(['$stateProvider', '$locationProvider','$urlRouterProvider', function($stateProvider, $locationProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('home',{
+        url: '/',
+        templateUrl: 'views/templates/cards-index.html',
+        controller: 'cardsController'
+      })
+      .state('decks', {
+        url: "/decks",
+        templateUrl: 'views/templates/decks-index.html',
+        controller: 'DecksIndexCtrl'
+      });
+      $urlRouterProvider.otherwise("/");
+
+      $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+        });
+    }]);
 
   app.controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     // INITIALIZATION AND NAVBAR LOGIC
