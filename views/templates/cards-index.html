@@ -5,25 +5,25 @@
 {{hello}}
 
   <div class="container">
-    <form name="newCardForm" ng-submit="createCard(newCard)">
+    <form name="newCardForm" ng-submit="createCard(Card)">
 
       <div class="row">
       <div class="col-sm-3">
           <label for="new-card-prompt">New card prompt</label><br>
-          <input type="textarea" id="new-card-prompt" ng-model="newCard.prompt" required/>
+          <input type="textarea" id="new-card-prompt" ng-model="Card.prompt" required/>
         </div>
         <div class="col-sm-3">
           <label for="new-card-answer">New card answer</label><br>
-          <input type="textarea" id="new-card-answer"ng-model="newCard.answer" required/>
+          <input type="textarea" id="new-card-answer"ng-model="Card.answer" required/>
         </div>
         <div class="col-sm-3">
           <label for="deck-name">Deck Name</label><br>
-          <input ng-model="newCard.deck" type="text" id="deck-name" />
+          <input ng-model="Card.deck" type="text" id="deck-name" />
         </div>
         <div class="col-sm-3">
           <button type="submit" class='btn btn-default save'>Save</button>
         </div>
-        your pending card is {{newCard}}
+        your pending card is {{Card}}
       </div>
     </form>
   </div>
