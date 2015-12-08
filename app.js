@@ -32,8 +32,8 @@ var app = angular.module('quizCards', ['ui.router']);
   app.controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     // INITIALIZATION AND NAVBAR LOGIC
   }]);
-  app.controller('cardsController', ['$scope', 'Card',
-    function cardsController($scope, Card){
+  app.controller("cardsController", ['$scope', 'Card',
+    function ($scope, Card){
       $scope.newCard = {};
 
       // callbacks for Parse queries
