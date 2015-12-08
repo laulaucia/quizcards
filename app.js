@@ -14,13 +14,12 @@ app.run(function(){
 });
 
 
-
-
   app.config(['$stateProvider', '$locationProvider','$urlRouterProvider', function($stateProvider, $locationProvider, $urlRouterProvider) {
     $stateProvider
       .state('home',{
         url: '/',
-        template: "I'm home, does this render?"
+        templateUrl: 'views/templates/cards-index.html',
+        controller: 'cardsController'
       })
       .state('decks', {
         url: "/decks",

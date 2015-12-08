@@ -3,20 +3,20 @@
 <h6 class="text-center">make and keep track of your own flashcards</h6>
   <h3 class="text-center">Make a new card!</h3>
   <div class="container">
-    <form name="newCardForm" ng-submit="card.save">
+    <form name="newCardForm" ng-submit="createNewCard()">
 
       <div class="row">
       <div class="col-sm-3">
           <label for="new-card-prompt">New card prompt</label><br>
-          <input type="textarea" id="new-card-prompt" ng-model="cards.newCard.prompt" required/>
+          <input type="textarea" id="new-card-prompt" ng-model="newCard.prompt" required/>
         </div>
         <div class="col-sm-3">
           <label for="new-card-answer">New card answer</label><br>
-          <input type="textarea" id="new-card-answer"ng-model="cards.newCard.answer" required/>
+          <input type="textarea" id="new-card-answer"ng-model="newCard.answer" required/>
         </div>
         <div class="col-sm-3">
           <label for="deck-name">Deck Name</label><br>
-          <input ng-model="cards.newCard.deck" type="text" id="deck-name" value="{{deck.name}}" />
+          <input ng-model="newCard.deck" type="text" id="deck-name" value="{{deck.name}}" />
         </div>
         <div class="col-sm-3">
           <button type="submit" class='btn btn-default save'>Save</button>
