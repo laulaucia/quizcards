@@ -34,10 +34,12 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
     $scope.hello = "the cards controller is rendering";
     $scope.newCard= {};
     $scope.cards = [];
+
     $scope.getcards = function(){
       CardService.query().promise.then(function(result){
-        $scope.cards = result.results;
+        $scope.cards = cards.push(result.results);
       });
+
     $scope.findCard = function(){
       console.log($stateParams);
       $scope.card = Card.get($stateParams.id, function(data){
@@ -46,7 +48,6 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
     };
 
     $scope.createNewCard = createNewCard;
-
 
     function createNewCard(){
       card.save($scope.newCard).then(function(object){
