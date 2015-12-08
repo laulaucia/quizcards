@@ -32,8 +32,8 @@ var app = angular.module('quizCards', ['ui.router']);
   app.controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     // INITIALIZATION AND NAVBAR LOGIC
   }]);
-  app.controller('cardsController', ['$scope','$stateParams', 'Card',
-    function cardsController($scope, $stateParams, CardService){
+  app.controller('cardsController', ['$scope', 'Card',
+    function cardsController($scope, Card){
       $scope.newCard = {};
 
       // callbacks for Parse queries
@@ -74,7 +74,8 @@ var app = angular.module('quizCards', ['ui.router']);
       $scope.hello = "controller loaded!";
 
       $scope.getCards = function() {
-        Card.all().then(getCardsSuccess, getCardsError);
+        Card.all()
+        .then(getCardsSuccess, getCardsError);
       };
 
       $scope.getCards(); /// load cards when controller loads
