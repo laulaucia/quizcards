@@ -29,7 +29,7 @@ function cardsController(){
 
   var Card = Parse.Object.extend("Card");
   var card = new Card();
-  card.save({prompt: "This is a new card!"}).then(function(object){
+  card.createNewCard().then(function(object){
     alert("yay it worked");
   });
 }
