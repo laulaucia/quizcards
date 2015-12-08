@@ -71,6 +71,8 @@ var app = angular.module('quizCards', ['ui.router']);
 
       /////// CONTROLLER FUNCTIONS
 
+      $scope.hello = "controller loaded!";
+
       $scope.getCards = function() {
         Card.all().then(getCardsSuccess, getCardsError);
       };
