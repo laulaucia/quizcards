@@ -51,7 +51,7 @@ var app = angular.module('quizCards', ['ui.router']);
           }
           $scope.cards = allCards;
           $scope.$apply();
-          console.log("$scope.cards is:", $scope.cards[0].attributes);
+          console.log("$scope.cards is:", $scope.cards);
         }
       }
       function getCardsError(error){
@@ -81,7 +81,7 @@ var app = angular.module('quizCards', ['ui.router']);
       $scope.getCards(); /// load cards when controller loads
 
       $scope.createCard = function(card){
-        Card.save(Card).then(createCardSuccess, createCardError);
+        Card.save(card).then(createCardSuccess, createCardError);
       };
 
       $scope.deleteCard = function(cardId){
