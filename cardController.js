@@ -37,7 +37,7 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
 
     $scope.getCards = function(){
       CardService.query().promise.then(function(result){
-        $scope.cards = result.results;
+        $scope.cards = cards.push(result.results);
       });
 
     $scope.findCard = function(){
