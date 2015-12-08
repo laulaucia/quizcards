@@ -3,14 +3,14 @@ angular.module('quizCards')
 			var factory = {};
 
 			factory.all = function(){
-				var CardObject = Parse.Object.extend("Card");
+				var CardObject = Parse.Object.extend("CardObject");
 				var query = new Parse.Query(CardObject);
 				// query.equalTo("createdBy", Parse.Deck.User.current());
 				return query.find();
 			}
 
-			factory.save = function(card){
-				var CardObject = Parse.Object.extend("Card");
+			factory.save = function(Card){
+				var CardObject = Parse.Object.extend("CardObject");
 				var newCard = new CardObject(); // instantiating card object instance
 				newCard.set(prompt, CardObject.prompt);
 				newCard.set(answer, CardObject.answer);
@@ -21,16 +21,16 @@ angular.module('quizCards')
 			}
 
 			factory.destroy = function(cardId, success, err) {
-            var Card = Parse.Object.extend("Card");
-            var query = new Parse.Query(Card);
+            var CardObject = Parse.Object.extend("CardObject");
+            var query = new Parse.Query(CardObject);
             query.get(cardId)
-                .then(function(card) {
-                    card.destroy(function() {
+                .then(function(CardObject) {
+                    CardObject.destroy(function() {
                         success();
                     }, function() {
                         console.log("error");
                     });
-                }, function(card, error) {
+                }, function(CardObject, error) {
                     console.log("object and error", object, error);
                 });
         };
