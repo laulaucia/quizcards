@@ -31,24 +31,24 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
 
     var Card = Parse.Object.extend("CardService");
     var card = new Card();
-    $scope.hello = "the cards controller is dumb";
+    $scope.hello = "the cards controller wooo!";
     $scope.newCard= {};
     $scope.cards = [];
 
     $scope.getCards = function(){
-      CardService.query().promise.then(function(result){
+      CardService.query().$promise.then(function(result){
         $scope.cards = cards.push(result.results);
       });
 
-    $scope.findCard = function(){
-      console.log($stateParams);
-      $scope.card = Card.get($stateParams.id, function(data){
-        console.log(data);
-      });
-    };
+    // $scope.findCard = function(){
+    //   console.log($stateParams);
+    //   $scope.card = Card.get($stateParams.id, function(data){
+    //     console.log(data);
+    //   });
+    // };
 
     $scope.createNewCard = function() {
-      CardService.create($scope.newCard).promise.then(function(object){
+      CardService.create($scope.newCard).$promise.then(function(object){
         $scope.cards.push($scope.newCard);
         console.log($scope.cards);
         $scope.$apply();
