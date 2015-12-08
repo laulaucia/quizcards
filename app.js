@@ -25,17 +25,17 @@ app.run(function(){
         url: "/decks",
         templateUrl: 'views/templates/decks-index.html',
         controller: 'DecksIndexCtrl'
-      })
+      });
       // .state('card', {
       //   url: "/decks/cards/:id",
       //   templateUrl: 'templates/cards-show.html',
       //   controller: 'cardsController',
       // })
-      .state('cards', {
-        url: "/cards",
-        templateUrl: 'views/templates/cards-index.html',
-        controller: 'cardsController'
-      });
+      // .state('cards', {
+      //   url: "/cards",
+      //   templateUrl: 'views/templates/cards-index.html',
+      //   controller: 'cardsController'
+      // });
 
     $urlRouterProvider.otherwise("/");
 

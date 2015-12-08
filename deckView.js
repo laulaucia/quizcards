@@ -1,17 +1,17 @@
-angular.module('quizCards')
-  .directive('deck', deckView);
+// angular.module('quizCards')
+//   .directive('deck', deckView);
 
-function deckView(){
-  var directive = {};
+// function deckView(){
+//   var directive = {};
 
-  //'A' == attribute, 'E' == element, 'C' == class
-  directive.restrict = 'E';
-  directive.replace = true;
-  directive.templateUrl =  "deck-show.html";
-  directive.scope = {
-      name: '@',
-      description: '@',
-      cards: '&'
-  };
-  return directive;
+//   //'A' == attribute, 'E' == element, 'C' == class
+//   directive.restrict = 'E';
+//   directive.replace = true;
+//   directive.templateUrl =  "deck-show.html";
+//   directive.scope = {
+//       name: '@',
+//       description: '@',
+//       cards: '&'
+//   };
+//   return directive;
 }
