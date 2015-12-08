@@ -51,7 +51,7 @@ var app = angular.module('quizCards', ['ui.router']);
           }
           $scope.cards = allCards;
           $scope.$apply();
-          console.log("$scope.cards is:", $scope.cards);
+          console.log("$scope.cards is:", $scope.cards[0].attributes);
         }
       }
       function getCardsError(error){
