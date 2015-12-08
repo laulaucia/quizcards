@@ -45,7 +45,7 @@
 
   <section class="container-fluid" >
     <div class="row">
-      <div class='col-xs-6 col-md-4 col-lg-3 text-center' ng-repeat="card in cards | filter: card.deck : data.deckFilter" ng-click="asking=!asking" ng-show="asking || !asking">
+      <div class='col-xs-6 col-md-4 col-lg-3 text-center' ng-repeat="card in getCards().cards | filter: card.deck : data.deckFilter" ng-click="asking=!asking" ng-show="asking || !asking">
         <div class="card flipOutX" ng-class="{'answer':answer}" ng-click="answer=!answer" >
           <h4 ng-show="asking" >{{card.answer}}</h4>
           <h4 ng-show="!asking" ng-hide="asking">{{card.prompt}}</h4>

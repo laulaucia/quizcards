@@ -31,13 +31,13 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
 
     var Card = Parse.Object.extend("CardService");
     var card = new Card();
-    $scope.hello = "the cards controller is coooool";
+    $scope.hello = "the cards controller is dumb";
     $scope.newCard= {};
     $scope.cards = [];
 
     $scope.getCards = function(){
-      Card.query().promise.then(function(result){
-        $scope.cards = cards.push(result.results);
+      CardService.query().promise.then(function(result){
+        $scope.cards = result.results;
       });
 
     $scope.findCard = function(){
@@ -48,7 +48,7 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
     };
 
     $scope.createNewCard = function() {
-      Card.create($scope.newCard).promise.then(function(object){
+      CardService.create($scope.newCard).promise.then(function(object){
         $scope.cards.push($scope.newCard);
         console.log($scope.cards);
         $scope.$apply();
