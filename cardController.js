@@ -29,11 +29,11 @@ function cardsController($scope){
   
   $scope.deleteCard = deleteCard;
 
-  function deleteCard() {
-    console.log(card);
-    var cardIndex = $scope.cards.indexof($scope.card);
-    console.log(cardIndex);
-    $scope.cards.splice(cardIndex, 1);
-  }
+  // function deleteCard() {
+  //   console.log(card);
+  //   var cardIndex = $scope.cards.indexof($scope.card);
+  //   console.log(cardIndex);
+  //   $scope.cards.splice(cardIndex, 1);
+  // }
 
 }
