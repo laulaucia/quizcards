@@ -36,4 +36,4 @@ function cardsController($scope){
   //   $scope.cards.splice(cardIndex, 1);
   // }
 
-}
+// }
