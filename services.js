@@ -3,34 +3,34 @@ angular.module('quizCards')
 			var factory = {};
 
 			factory.all = function(){
-				var CardObject = Parse.Object.extend("CardObject");
-				var query = new Parse.Query(CardObject);
+				var Card = Parse.Object.extend("Card");
+				var query = new Parse.Query(Card);
 				// query.equalTo("createdBy", Parse.Deck.User.current());
 				return query.find();
 			}
 
 			factory.save = function(Card){
-				var CardObject = Parse.Object.extend("CardObject");
-				var newCard = new CardObject(); // instantiating card object instance
-				newCard.set('prompt', CardObject.prompt);
-				newCard.set('answer', CardObject.answer);
-				newCard.set('deck', CardObject.deck);
+				var Card = Parse.Object.extend("Card");
+				var newCard = new Card(); // instantiating card object instance
+				newCard.set('prompt', Card.prompt);
+				newCard.set('answer', Card.answer);
+				newCard.set('deck', Card.deck);
 				// newCard.set("createdBy", Parse.User.current());
-				console.log("CardObject is: ", CardObject);
+				console.log("Card is: ", Card);
 				return newCard.save();
 			}
 
 			factory.destroy = function(cardId, success, err) {
-            var CardObject = Parse.Object.extend("CardObject");
-            var query = new Parse.Query(CardObject);
+            var Card = Parse.Object.extend("Card");
+            var query = new Parse.Query(Card);
             query.get(cardId)
-                .then(function(CardObject) {
-                    CardObject.destroy(function() {
+                .then(function(Card) {
+                    Card.destroy(function() {
                         success();
                     }, function() {
                         console.log("error");
                     });
-                }, function(CardObject, error) {
+                }, function(Card, error) {
                     console.log("object and error", object, error);
                 });
         };
