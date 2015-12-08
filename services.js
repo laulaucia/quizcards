@@ -12,9 +12,9 @@ angular.module('quizCards')
 			factory.save = function(Card){
 				var CardObject = Parse.Object.extend("CardObject");
 				var newCard = new CardObject(); // instantiating card object instance
-				newCard.set(prompt, CardObject.prompt);
-				newCard.set(answer, CardObject.answer);
-				newCard.set(deck, CardObject.deck);
+				newCard.set('prompt', CardObject.prompt);
+				newCard.set('answer', CardObject.answer);
+				newCard.set('deck', CardObject.deck);
 				// newCard.set("createdBy", Parse.User.current());
 				console.log("CardObject is: ", CardObject);
 				return newCard.save();
