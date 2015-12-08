@@ -22,6 +22,7 @@ var app = angular.module('quizCards');
   function createNewCard(){
     card.save($scope.newCard).then(function(object){
       $scope.cards.push($scope.newCard);
+      console.log(cards);
       $scope.$apply();
     });
     $scope.newCard= {};
