@@ -1,6 +1,8 @@
 var app = angular.module('quizCards', ['ui.router', 'ngResource']);
-  app.run(function(){
-    Parse.initialize("uSFbSM6EMj5Zb2dCyuwQaPxzKuKkAy4sifhq9hWh", "A92NpYrHsWzXfP9OPcSzEI70aQgk6dL4KzfwvUb1");
+  app.constant('myConfig',{
+    'api_url': 'https://api.parse.com/1/classes/',
+    'parse_application_id': 'uSFbSM6EMj5Zb2dCyuwQaPxzKuKkAy4sifhq9hWh',
+    'parse_rest_api_key': 'A92NpYrHsWzXfP9OPcSzEI70aQgk6dL4KzfwvUb1',
   });
   app.config(['$stateProvider', '$locationProvider','$urlRouterProvider', function($stateProvider, $locationProvider, $urlRouterProvider) {
     $stateProvider
@@ -29,9 +31,13 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
 
     var Card = Parse.Object.extend("CardService");
     var card = new Card();
+    $scope.hello = "the cards controller is rendering";
     $scope.newCard= {};
     $scope.cards = [];
-    $scope.cards = CardService.query();
+    $scope.getcards = function(){
+      CardService.query().promise.then(function(result){
+        $scope.cards = result.results;
+      });
     $scope.findCard = function(){
       console.log($stateParams);
       $scope.card = Card.get($stateParams.id, function(data){
@@ -61,5 +67,5 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
   //   $scope.cards.splice(cardIndex, 1);
   // }
 
-
+};
   }]);
