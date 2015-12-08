@@ -1,7 +1,8 @@
-var app = angular.module('quizCards');
+var app = angular.module('quizCards', ['ui.router', 'ngResource']);
   app.run(function(){
-  Parse.initialize("uSFbSM6EMj5Zb2dCyuwQaPxzKuKkAy4sifhq9hWh", "A92NpYrHsWzXfP9OPcSzEI70aQgk6dL4KzfwvUb1");
-});
+    Parse.initialize("uSFbSM6EMj5Zb2dCyuwQaPxzKuKkAy4sifhq9hWh", "A92NpYrHsWzXfP9OPcSzEI70aQgk6dL4KzfwvUb1");
+  });
+  
   app.controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     // INITIALIZATION AND NAVBAR LOGIC
   }]);
@@ -13,7 +14,7 @@ var app = angular.module('quizCards');
   $scope.newCard= {};
   $scope.cards = [];
   $scope.cards = Card.query();
-  $scope.findBook = function(){
+  $scope.findCard = function(){
     console.log($stateParams);
     $scope.card = Card.get($stateParams.id, function(data){
       console.log(data);

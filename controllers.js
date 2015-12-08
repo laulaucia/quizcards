@@ -2,10 +2,10 @@
  * CONTROLLERS
  */
 
-angular.module('quizCards')
-  .controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
-    // INITIALIZATION AND NAVBAR LOGIC
-  }]);
+// angular.module('quizCards')
+//   .controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
+//     // INITIALIZATION AND NAVBAR LOGIC
+//   }]);
 
  //  //CARDS
  //  .controller('CardsIndexCtrl', ['Card', '$scope', '$location', '$resource', function (Card, $scope, $location, $resource) {
