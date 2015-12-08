@@ -5,7 +5,7 @@ angular.module('quizCards')
 			factory.all = function(){
 				var Card = Parse.Object.extend("Card");
 				var query = new Parse.Query(Card);
-				query.equalTo("createdBy", Parse.Deck.User.current());
+				// query.equalTo("createdBy", Parse.Deck.User.current());
 				return query.find();
 			}
 
@@ -15,7 +15,7 @@ angular.module('quizCards')
 				newCard.set("prompt", card.prompt);
 				newCard.set("answer", card.answer);
 				newCard.set("deck", card.deck);
-				newCard.set("createdBy", Parse.User.current());
+				// newCard.set("createdBy", Parse.User.current());
 				return newCard.save();
 			}
 
