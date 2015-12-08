@@ -3,19 +3,20 @@ angular.module('quizCards')
 			var factory = {};
 
 			factory.all = function(){
-				var Card = Parse.Object.extend("Card");
-				var query = new Parse.Query(Card);
+				var CardObject = Parse.Object.extend("Card");
+				var query = new Parse.Query(CardObject);
 				// query.equalTo("createdBy", Parse.Deck.User.current());
 				return query.find();
 			}
 
 			factory.save = function(card){
-				var Card = Parse.Object.extend("Card");
+				var CardObject = Parse.Object.extend("Card");
 				var newCard = new Card(); // instantiating card object instance
-				newCard.set("prompt", Card.prompt);
-				newCard.set("answer", Card.answer);
-				newCard.set("deck", Card.deck);
+				newCard.set("prompt", CardObject.prompt);
+				newCard.set("answer", CardObject.answer);
+				newCard.set("deck", CardObject.deck);
 				// newCard.set("createdBy", Parse.User.current());
+				console.log("CardObject is: ", CardObject);
 				return newCard.save();
 			}
 
