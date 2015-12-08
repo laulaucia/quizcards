@@ -35,7 +35,7 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
     $scope.newCard= {};
     $scope.cards = [];
 
-    $scope.getcards = function(){
+    $scope.getCards = function(){
       CardService.query().promise.then(function(result){
         $scope.cards = cards.push(result.results);
       });
@@ -50,7 +50,7 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
     $scope.createNewCard = createNewCard;
 
     function createNewCard(){
-      card.save($scope.newCard).then(function(object){
+      CardService.create($scope.newCard).promise.then(function(object){
         $scope.cards.push($scope.newCard);
         console.log($scope.cards);
         $scope.$apply();
