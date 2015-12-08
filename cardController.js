@@ -47,16 +47,14 @@ var app = angular.module('quizCards', ['ui.router', 'ngResource']);
       });
     };
 
-    $scope.createNewCard = createNewCard;
-
-    function createNewCard(){
+    $scope.createNewCard = function() {
       CardService.create($scope.newCard).promise.then(function(object){
         $scope.cards.push($scope.newCard);
         console.log($scope.cards);
         $scope.$apply();
       });
       $scope.newCard= {};
-    }
+    };
   
 
   // $scope.deleteCard = deleteCard;
