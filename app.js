@@ -81,6 +81,7 @@ var app = angular.module('quizCards', ['ui.router']);
       $scope.getCards(); /// load cards when controller loads
 
       $scope.createCard = function(card){
+        console.log("hey im tryna make a card ", card);
         Card.save(card).then(createCardSuccess, createCardError);
       };
 

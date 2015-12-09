@@ -9,14 +9,14 @@ angular.module('quizCards')
 				return query.find();
 			}
 
-			factory.save = function(Card){
-				var Card = Parse.Object.extend("Card");
-				var newCard = new Card(); // instantiating card object instance
-				newCard.set('prompt', Card.prompt);
-				newCard.set('answer', Card.answer);
-				newCard.set('deck', Card.deck);
+			factory.save = function(card){
+				var CardObject = Parse.Object.extend("Card");
+				var newCard = new CardObject(); // instantiating card object instance
+				newCard.set('prompt', card.prompt);
+				newCard.set('answer', card.answer);
+				newCard.set('deck', card.deck);
 				// newCard.set("createdBy", Parse.User.current());
-				console.log("Card is: ", Card);
+				console.log("Card is: ", card);
 				return newCard.save();
 			}
 
