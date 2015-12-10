@@ -1,14 +1,14 @@
 <div>
 <!-- <h1 class="text-center">QUIZ CARDS</h1> -->
 
-<h6 class="text-center">make and keep track of your own flashcards</h6>
-  <h3 class="text-center">Make a new card!</h3>
+
+  <h3 class="text-center lobster">Make a new card!</h3>
 {{hello}}
 
   <div class="container">
     <form name="newCardForm" ng-submit="createCard(Card)">
 
-      <div class="row">
+      <div class="row lobster">
       <div class="col-sm-3">
           <label for="new-card-prompt">New card prompt</label><br>
           <input type="textarea" id="new-card-prompt" ng-model="Card.prompt" required/>
@@ -22,7 +22,7 @@
           <input ng-model="Card.deck" type="text" id="deck-name" />
         </div>
         <div class="col-sm-3">
-          <button type="submit" class='btn btn-default save'>Save</button>
+          <button type="submit" class='btn btn-default save menu-item'>Save</button>
         </div>
         your pending card is {{Card}}
       </div>
@@ -48,8 +48,8 @@
   <section class="container-fluid" >
     <div class="row">
       <div class='col-xs-6 col-md-4 col-lg-3 text-center' ng-repeat="card in cards | filter: card.deck : data.deckFilter" ng-click="asking=!asking" ng-show="asking || !asking">
-        <div class="card flipOutX" ng-class="{'answer':answer}" ng-click="answer=!answer" >
-            <div class='pull-right' ng-click="deleteCard(card.id)">
+        <div class="card flipOutX " ng-class="{'answer':answer}" ng-click="answer=!answer" >
+            <div class='pull-right ' ng-click="deleteCard(card.id)">
               <a href="#" ><i class='glyphicon glyphicon-remove'></i></a>
             </div>
           <h4 ng-show="asking" >{{card.attributes.answer}}</h4>
