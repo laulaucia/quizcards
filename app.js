@@ -39,6 +39,7 @@ var app = angular.module('quizCards', ['ui.router']);
       // callbacks for Parse queries
       function getCardsSuccess(results){
         var allCards = [];
+        $scope.Card = {};
         if (results.length === 0){
           console.log("there are no cards yet.");
           $scope.cards = [];
@@ -51,7 +52,7 @@ var app = angular.module('quizCards', ['ui.router']);
           }
           $scope.cards = allCards;
           $scope.$apply();
-          console.log("$scope.cards attributes is:", $scope.cards[0].attributes);
+          
         }
       }
       function getCardsError(error){
@@ -71,9 +72,9 @@ var app = angular.module('quizCards', ['ui.router']);
 
       /////// CONTROLLER FUNCTIONS
 
-      $scope.hello = "controller loaded!";
 
       $scope.getCards = function() {
+        $scope.newCard = {};
         Card.all()
         .then(getCardsSuccess, getCardsError);
       };
@@ -83,6 +84,7 @@ var app = angular.module('quizCards', ['ui.router']);
       $scope.createCard = function(card){
         console.log("hey im tryna make a card ", card);
         Card.save(card).then(createCardSuccess, createCardError);
+
       };
 
       $scope.deleteCard = function(cardId){
