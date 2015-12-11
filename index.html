@@ -15,38 +15,76 @@
 </head>
 
 <body ng-controller="MainCtrl">
-<div class="wrapper">
-  <div class="row"> 
-    <div class="col-xs-2 left">
-      <div class="navigation text-center ">
-        <a ui-sref="home"><img class="qzlogo" src="/images/QuizWiz.svg"></a><br>
-        <h6 class="text-center">make and keep track of <br>your own flashcards</h6>
-        <a ui-sref="decks" class="btn menu-item"><h4>Decks</h4></a>
+  <div class="wrapper">
+    <div class="row"> 
+      <div class="col-xs-2 left">
+        <div class="navigation text-center">
+          <a ui-sref="home"><img class="qzlogo" src="/images/QuizWiz.svg"></a><br>
+          <h6 >make and keep track of <br>your own flashcards</h6>
+          <button ui-sref="decks" class="menu-item">Decks</button>
+          <div ng-show="currentUser">
+            <h6>Welcome {{currentUser.get('username')}} !
+              <br> You are logged in</h6>
+              <button  class="menu-item" ng-click="logOut(user)">Log out</button>
+            </div> <!-- show current user -->
+          </div> <!-- end navigation -->
+        </div>   <!-- end col xs 2 -->
+
+        <!--  LOGIN STUFF-->
+           
+            <div ng-hide="currentUser">
+          <div class=" col-xs-8 col-md-10 content">
+              <form class="form" ng-show="scenario == 'Hello!'">
+                <h2 class="lobster">Sign up</h2>
+                <label for="new-user-email">Email:</label><br>
+                <input type="email" ng-model="user.email" /><br />
+                <label for="new-user-username">Username:</label><br>
+                <input type="text" ng-model="user.username" /><br />
+                <label for="new-user-password">Password:</label><br>
+                <input type="password" ng-model="user.password" /><br />
+                <div> </div>
+                <button class="menu-item" ng-click="signUp(user)">Sign up</button>
+                or <button href="#" class="menu-item" ng-click="scenario='Log in'">Log in</button>
+              </form>
+
+              <form class="form" ng-show="scenario == 'Log in'">
+                <h2 class="lobster">Log in</h2>
+                <label for="user-username">Username:</label><br>
+                <input type="text" ng-model="user.username" /><br />
+                <label for="new-user-password">Password:</label><br>
+                <input type="password" ng-model="user.password" /><br /><br>
+                <button class="menu-item"ng-click="logIn(user)">Log in</button>
+                or <button href="#" class="menu-item" ng-click="scenario='Hello!'">Sign up</button>
+              </form>
+            </div>
+          </div>
+        <!-- END LOGIN STUFF -->
+
+
+
+        <!-- ANGULAR APP INSERTER HERE -->
+        <div ui-view class="col-xs-8 col-md-10 content"></div>
+         <!--  -->
       </div>
-    </div>  
+      </div>  
+    </div>
+    <!-- THIRD PARTY LIBRARIES -->
+    <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript" src="/vendor/angular/angular.js"></script>
+    <script type="text/javascript" src="/vendor/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="/vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="/vendor/angular-sanitize/angular-sanitize.js"></script>
+    <script type="text/javascript" src="/vendor/angular-touch/angular-touch.js"></script>
 
-    <!-- ANGULAR APP INSERTER HERE -->
-    <div ui-view class="col-xs-8 col-md-10 content"></div>
-    
-  </div>
-  </div>
-   <!-- THIRD PARTY LIBRARIES -->
-   <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
-   <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-   <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-   <script type="text/javascript" src="/vendor/angular/angular.js"></script>
-   <script type="text/javascript" src="/vendor/angular-resource/angular-resource.js"></script>
-   <script type="text/javascript" src="/vendor/angular-ui-router/release/angular-ui-router.js"></script>
-   <script type="text/javascript" src="/vendor/angular-sanitize/angular-sanitize.js"></script>
-   <script type="text/javascript" src="/vendor/angular-touch/angular-touch.js"></script>
-   <script src="bower_components/angular-resource/angular-resource.min.js"></script>
 
-   <!-- YOUR SCRIPTS -->
-   <script type="text/javascript" src="app.js"></script> 
-   <!--<script type="text/javascript" src="cardController.js"></script> -->
-   <script type="text/javascript" src="services.js"></script>
-  
- </body>
- </html>
+    <!-- YOUR SCRIPTS -->
+    <script type="text/javascript" src="app.js"></script> 
+    <script type="text/javascript" src="controllers.js"></script> 
+    <script type="text/javascript" src="services.js"></script>
+
+  </body>
+  </html>

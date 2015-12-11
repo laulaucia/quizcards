@@ -2,6 +2,88 @@
  * CONTROLLERS
  */
 
+var app = angular.module('quizCards');
+
+  app.controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
+    // INITIALIZATION AND NAVBAR LOGIC
+  }]);
+  app.controller("cardsController", ['$scope', 'Card',
+    function ($scope, Card){
+      $scope.newCard = {};
+
+      // callbacks for Parse queries
+      function getCardsSuccess(results){
+        var allCards = [];
+        $scope.Card = {};
+        if (results.length === 0){
+          console.log("there are no cards yet.");
+          $scope.cards = [];
+          $scope.$apply();
+        }
+        else{
+          for (var i = 0; i < results.length; i++){
+            var card = results[i];
+            allCards.unshift(card);
+          }
+          $scope.cards = allCards;
+          $scope.$apply();
+          
+        }
+      }
+      function getCardsError(error){
+        alert("Error:" + error.code + " "+ error.message);
+      }
+
+      function createCardSuccess (card){
+        console.log("new object created with object id: " + card.id);
+        $scope.newCard = {}; // clear unput
+        $scope.getCards(); // refresh $scope.cards
+      }
+
+      function createCardError (card, error){
+        alert("failed to create new object, with error code " + error.message);
+      }
+
+
+      /////// CONTROLLER FUNCTIONS
+
+
+      $scope.getCards = function() {
+        $scope.newCard = {};
+        Card.all()
+        .then(getCardsSuccess, getCardsError);
+      };
+
+      $scope.getCards(); /// load cards when controller loads
+
+      $scope.createCard = function(card){
+        console.log("hey im tryna make a card ", card);
+        Card.save(card).then(createCardSuccess, createCardError);
+
+      };
+
+      $scope.deleteCard = function(cardId){
+        console.log("cardId is: ", cardId);
+        Card.destroy(cardId, $scope.getCards, function(card, error){
+          console.log("error deleting card: ", error , card);
+        });
+      };
+      // Listening for user logging in to populate posts
+      $scope.$on("logged_in", function(event, message) {
+        $scope.message = message;
+          console.log("logged in message is:", $scope.message);
+          $scope.getCards();
+      });
+
+      // Listening for logout from root scope controller, clears posts
+      $scope.$on("logged_out", function(event, message) {
+          $scope.message = message;
+          console.log("logged out message is:", $scope.message);
+          $scope.cards = [];
+      });
+}]);
+
+
 // angular.module('quizCards')
 //   .controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
 //     // INITIALIZATION AND NAVBAR LOGIC

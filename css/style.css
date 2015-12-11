@@ -1,12 +1,9 @@
 /*PUT YOUR STYLES HERE*/
 
 .qzlogo{
-  width: 200px;
+  width: 170px;
   position: center;
-}
-
-nav {
-  background: white;
+  margin-top: 10px;
 }
 
 .card {
@@ -67,19 +64,10 @@ nav {
   margin-left: 1px;
 }
 
-.container {
-  margin: 4rem;
-}
-
-
-.row {
-  margin: 0;
-}
-
 form input{
     padding: 10px;
     border-radius: 20px;
-    
+    margin-bottom: 10px;
 }
 
 form input:active{
@@ -98,15 +86,20 @@ form input:active{
 
 .navigation{
   position: fixed;
+  min-width: 170px;
+  z-index: 1;
 }
 
 .menu-item{ 
-  padding: 10px;
+  padding: 12px 20px;
   background: #202060;
   color: white;
   border-radius: 20px;
   font-family: 'Lobster', cursive;
   width: 8em;
+  margin: 0 5px;
+  border: 0;
+  cursor: pointer;
 }
 
 .menu-item:hover{
@@ -127,5 +120,11 @@ form input:active{
 .lobster{
   font-family: 'Lobster', cursive;
 }
+.content{
+  position: relative;
+}
 
-
+.form{
+  padding: 20px;
+  margin:20px;
+}
