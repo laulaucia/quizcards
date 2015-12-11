@@ -21,8 +21,8 @@
         <div class="navigation text-center">
           <a ui-sref="home"><img class="qzlogo" src="/images/QuizWiz.svg"></a><br>
           <h6 >make and keep track of <br>your own flashcards</h6>
-          <button ui-sref="decks" class="menu-item">Decks</button>
           <div ng-show="currentUser">
+            <button ui-sref="decks" class="menu-item">Decks</button>
             <h6>Welcome {{currentUser.get('username')}} !
               <br> You are logged in</h6>
               <button  class="menu-item" ng-click="logOut(user)">Log out</button>
