@@ -45,17 +45,22 @@ var app = angular.module('quizCards', ['ui.router']);
     };
 
  }]);
+
+  app.controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
+      // INITIALIZATION AND NAVBAR LOGIC
+    }]);
+  
   app.config(['$stateProvider', '$locationProvider','$urlRouterProvider', function($stateProvider, $locationProvider, $urlRouterProvider) {
     $stateProvider
       .state('home',{
         url: '/',
         templateUrl: 'views/templates/cards-index.html',
-        controller: 'cardsController'
+        
       })
       .state('decks', {
         url: "/decks",
         templateUrl: 'views/templates/decks-index.html',
-        controller: 'DecksIndexCtrl'
+        
       });
       $urlRouterProvider.otherwise("/");
 

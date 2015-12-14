@@ -4,7 +4,11 @@
   width: 170px;
   position: center;
   margin-top: 10px;
+  display: inline-block;
 }
+
+/*  Card & Deck Styles
+=====================================*/
 
 .card {
   background: #202060;
@@ -42,13 +46,16 @@
   animation-duration: 1s;
 }
 .deck {
-  background: purple;
-  border-color: purple;
+  background: #202060;
+  border-color: #202060;
   color: white;
   padding: 1rem;
   min-height: 16rem;
   position: relative;
   margin-bottom: 10px;
+  border-radius: 30px;
+  animation-name: flipInX;
+  animation-duration: 1s;
 }
 
 .deck h6 {
@@ -63,6 +70,17 @@
   font-size: 60%;
   margin-left: 1px;
 }
+
+.deck:hover{
+  background: blue;
+}
+
+.deck:active{
+  background: green;
+}
+
+/*  Form Styles
+=====================================*/
 
 form input{
     padding: 10px;
@@ -79,15 +97,17 @@ form input:active{
   border: 10px pink;
 }
 
-.wrapper{
+/*.wrapper{
   min-width: 500px;
   padding: 0;
-}
+}*/
 
 .navigation{
-  position: fixed;
-  min-width: 170px;
+  /*position: fixed;
+  display: inline-block;*/
   z-index: 1;
+  /*background: green;*/
+
 }
 
 .menu-item{ 
@@ -100,6 +120,7 @@ form input:active{
   margin: 0 5px;
   border: 0;
   cursor: pointer;
+  display: inline-block;
 }
 
 .menu-item:hover{
@@ -127,4 +148,34 @@ form input:active{
 .form{
   padding: 20px;
   margin:20px;
+}
+.glyphicon-remove{
+  color: white;
+}
+
+/*  Float Clearfix
+=====================================*/
+
+.group:after{
+  content: " ";
+  display:  table;
+  clear: both;
+}
+
+
+/*  Media Queries
+=====================================*/
+
+@media (min-width: 768px){
+  .namethings{
+    width:initial;
+    height: initial;
+    float: initial;
+  }
+  .special{
+    width: 100%;
+  }
+  .extra {
+    display: none;
+  }
 }

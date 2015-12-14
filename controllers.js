@@ -7,9 +7,10 @@ var app = angular.module('quizCards');
   app.controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     // INITIALIZATION AND NAVBAR LOGIC
   }]);
-  app.controller("cardsController", ['$scope', 'Card',
-    function ($scope, Card){
+  app.controller("cardsController", ['$scope', 'Card','Deck',
+    function ($scope, Card, Deck){
       $scope.newCard = {};
+      $scope.scenario = "make cards";
 
       // callbacks for Parse queries
       function getCardsSuccess(results){
@@ -48,13 +49,13 @@ var app = angular.module('quizCards');
       /////// CONTROLLER FUNCTIONS
 
 
-      $scope.getCards = function() {
+      $scope.getCards = function(deck) {
         $scope.newCard = {};
-        Card.all()
+        Card.allInDeck()
         .then(getCardsSuccess, getCardsError);
       };
 
-      $scope.getCards(); /// load cards when controller loads
+      // $scope.getCards(); /// load cards when controller loads
 
       $scope.createCard = function(card){
         console.log("hey im tryna make a card ", card);
@@ -84,55 +85,85 @@ var app = angular.module('quizCards');
 }]);
 
 
-// angular.module('quizCards')
-//   .controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
-//     // INITIALIZATION AND NAVBAR LOGIC
-//   }]);
+//  DECKS THINGS!
 
- //  //CARDS
- //  .controller('CardsIndexCtrl', ['Card', '$scope', '$location', '$resource', function (Card, $scope, $location, $resource) {
-    
- //    // GET CARDS
- //   $scope.cards = [Card.query()];
 
- //   // CREATE A CARD    
- //   $scope.createCard = function() {
- //     var card = new Card($scope.card);
- //     card.$save(function(data) {
- //       $scope.cards.unshift(data);
- //       $scope.card = {};
- //     });
- //   };
+app.controller("decksController", ['$scope', 'Deck',
+    function ($scope, Deck){
+      $scope.newDeck = {};
+      $scope.currentDeck = Parse.Deck;
+      $scope.scenario = "make decks";
 
- //   // DELETE A CARD
- //   $scope.deleteCard = function(card, index) {
- //     Card.remove({ id: card._id }, function(data) {
- //       $scope.cards.splice(index, 1);
- //     });
- //   };
-  
- // }])
+      // callbacks for Parse queries
+      function getDecksSuccess(results){
+        var allDecks = [];
+        $scope.Deck = {};
+        if (results.length === 0){
+          console.log("there are no decks yet.");
+          $scope.decks = [];
+          $scope.$apply();
+        }
+        else{
+          for (var i = 0; i < results.length; i++){
+            var deck = results[i];
+            allDecks.unshift(deck);
+          }
+          $scope.decks = allDecks;
+          $scope.$apply();
+          
+        }
+      }
+      function getDecksError(error){
+        alert("Error:" + error.code + " "+ error.message);
+      }
 
- //  //DECKS
- //  .controller('DecksIndexCtrl', ['Deck', '$scope', '$location', '$resource', function (Deck, $scope, $location, $resource) {
-    
- //    // GET DECKS
- //   $scope.decks = Deck.query();
+      function createDeckSuccess (deck){
+        console.log("new object created with object id: " + deck.id);
+        $scope.newDeck = {}; // clear unput
+        $scope.getDecks(); // refresh $scope.Decks
+      }
 
- //   // CREATE A DECK    
- //   $scope.createDeck = function() {
- //     var deck = new Deck($scope.deck);
- //     deck.$save(function(data) {
- //       $scope.decks.unshift(data);
- //       $scope.deck = {};
- //     });
- //   };
+      function createDeckError (deck, error){
+        alert("failed to create new object, with error code " + error.message);
+      }
 
- //   // DELETE A DECK
- //   $scope.deleteDeck = function(deck, index) {
- //     Deck.remove({ id: deck._id }, function(data) {
- //       $scope.decks.splice(index, 1);
- //     });
- //   };
-  
- // }]);
+
+      /////// DECK CONTROLLER FUNCTIONS
+
+
+      $scope.getDecks = function() {
+        $scope.newDeck = {};
+        console.log($scope.newDeck);
+        Deck.all()
+        .then(getDecksSuccess, getDecksError);
+      };
+
+      $scope.getDecks(); /// load Decks when controller loads
+
+      $scope.createDeck = function(deck){
+        console.log("hey im tryna make a deck ", deck);
+        Deck.save(deck).then(createDeckSuccess, createDeckError);
+
+      };
+
+      $scope.deleteDeck = function(deckId){
+        console.log("deckId is: ", deckId);
+        Deck.destroy(deckId, $scope.getDecks, function(deck, error){
+          console.log("error deleting deck: ", error , deck);
+        });
+      };
+      // Listening for user logging in to populate decks
+      $scope.$on("logged_in", function(event, message) {
+        $scope.message = message;
+          console.log("logged in message is:", $scope.message);
+          $scope.getCards();
+      });
+
+      // Listening for logout from root scope controller, clears decks
+      $scope.$on("logged_out", function(event, message) {
+          $scope.message = message;
+          console.log("logged out message is:", $scope.message);
+          $scope.decks = [];
+      });
+}]);
+

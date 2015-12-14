@@ -17,7 +17,7 @@
 <body ng-controller="MainCtrl">
   <div class="wrapper">
     <div class="row"> 
-      <div class="col-xs-2 left">
+      <div class="col-xs-12">
         <div class="navigation text-center">
           <a ui-sref="home"><img class="qzlogo" src="/images/QuizWiz.svg"></a><br>
           <h6 >make and keep track of <br>your own flashcards</h6>
@@ -26,33 +26,41 @@
             <h6>Welcome {{currentUser.get('username')}} !
               <br> You are logged in</h6>
               <button  class="menu-item" ng-click="logOut(user)">Log out</button>
-            </div> <!-- show current user -->
-          </div> <!-- end navigation -->
-        </div>   <!-- end col xs 2 -->
+          </div> <!-- show current user -->
+        </div> <!-- end navigation -->
+      </div>   <!-- end col xs 2 -->
 
         <!--  LOGIN STUFF-->
-           
             <div ng-hide="currentUser">
-          <div class=" col-xs-8 col-md-10 content">
-              <form class="form" ng-show="scenario == 'Hello!'">
+          <div class=" col-xs-12 col-sm-6 col-sm-offset-3 content text-center">
+              <form class="form " ng-show="scenario == 'Hello!'">
                 <h2 class="lobster">Sign up</h2>
-                <label for="new-user-email">Email:</label><br>
-                <input type="email" ng-model="user.email" /><br />
-                <label for="new-user-username">Username:</label><br>
-                <input type="text" ng-model="user.username" /><br />
-                <label for="new-user-password">Password:</label><br>
-                <input type="password" ng-model="user.password" /><br />
-                <div> </div>
-                <button class="menu-item" ng-click="signUp(user)">Sign up</button>
+              <div class="form-group">
+                <label for="new-user-email">Email</label><br>
+                <input class="form-control" type="email" ng-model="user.email" />
+              </div>
+              <div class="form-group">
+                <label for="new-user-username">Username</label><br>
+                <input class="form-control"type="text" ng-model="user.username" />
+              </div>
+              <div class="form-group">
+                <label for="new-user-password">Password</label><br>
+                <input class="form-control" type="password" ng-model="user.password" />
+              </div>
+                <button class="menu-item " ng-click="signUp(user)">Sign up</button>
                 or <button href="#" class="menu-item" ng-click="scenario='Log in'">Log in</button>
               </form>
 
-              <form class="form" ng-show="scenario == 'Log in'">
+              <form class="form " ng-show="scenario == 'Log in'">
                 <h2 class="lobster">Log in</h2>
-                <label for="user-username">Username:</label><br>
-                <input type="text" ng-model="user.username" /><br />
-                <label for="new-user-password">Password:</label><br>
-                <input type="password" ng-model="user.password" /><br /><br>
+              <div class="form-group">
+                <label for="user-username">Username</label><br>
+                <input class="form-control" type="text" ng-model="user.username" />
+              </div>
+              <div class="form-group">
+                <label for="new-user-password">Password</label><br>
+                <input class="form-control" type="password" ng-model="user.password" />
+              </div>
                 <button class="menu-item"ng-click="logIn(user)">Log in</button>
                 or <button href="#" class="menu-item" ng-click="scenario='Hello!'">Sign up</button>
               </form>
@@ -63,7 +71,7 @@
 
 
         <!-- ANGULAR APP INSERTER HERE -->
-        <div ui-view class="col-xs-8 col-md-10 content"></div>
+        <div ui-view class="col-xs-8 col-md-10 content" ng-if="currentUser"></div>
          <!--  -->
       </div>
       </div>  
