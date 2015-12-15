@@ -49,19 +49,22 @@ var app = angular.module('quizCards', ['ui.router']);
   app.controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
       // INITIALIZATION AND NAVBAR LOGIC
     }]);
-  
+
   app.config(['$stateProvider', '$locationProvider','$urlRouterProvider', function($stateProvider, $locationProvider, $urlRouterProvider) {
     $stateProvider
       .state('home',{
         url: '/',
-        templateUrl: 'views/templates/cards-index.html',
+        templateUrl: 'views/templates/decks-index.html'
         
       })
-      .state('decks', {
-        url: "/decks",
-        templateUrl: 'views/templates/decks-index.html',
+      .state('cards', {
+        url: "/decks/:id",
+        templateUrl: 'views/templates/cards-index.html',
+        controller: 'cardsController'
+
         
-      });
+      })
+
       $urlRouterProvider.otherwise("/");
 
       $locationProvider.html5Mode({

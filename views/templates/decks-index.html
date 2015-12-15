@@ -1,78 +1,61 @@
+  <div ng-init="scenario == 'make decks'" ng-controller="decksController">
+    <div class="view"  ng-show="scenario == 'make decks'" ng-hide="scenario == 'make cards'">
 
 
+      <h3 class="text-center lobster"> Hi {{currentUser.get('username')}}! Why dont you make a new Deck?</h3>
 
-  <h3 class="text-center lobster">Make a new Deck!</h3>
-{{hello}}
+      <div class="text-center">
+        <form  class="col-xs-12 col-sm-6 col-sm-offset-3 "name="newDeckForm" ng-submit="createDeck(Deck)">
 
-  <div class="container">
-    <form name="newDeckForm" ng-submit="createDeck(Deck)">
-
-      <div class="row lobster">
-      <div class="col-sm-3">
-          <label for="new-Deck-prompt">New Deck name</label><br>
-          <input type="textarea" id="new-Deck-name" ng-model="Deck.name" required/>
-        </div>
-        <div class="col-sm-3">
-          <label for="new-Deck-answer">New Deck Description</label><br>
-          <input type="textarea" id="new-Deck-answer"ng-model="Deck.description" required/>
-        </div>
-        <div class="col-sm-3">
-          <label for="deck-name">Deck Name</label><br>
-          <input ng-model="Deck.deck" type="text" id="deck-name" />
-        </div>
+          <div class="row lobster">
+            <div class="form-group">
+              <label for="new-Deck-prompt">New Deck name</label><br>
+              <input class="form-control"type="textarea" id="new-Deck-name" ng-model="Deck.name" required/>
+            </div>
+            <div class="form-group">
+              <label for="new-Deck-answer">New Deck Description</label><br>
+              <input class="form-control" type="textarea" id="new-Deck-answer"ng-model="Deck.description" required/>
+            </div>
+            <div class="form-group">
+              <label for="new-deck-color-front">Card color front (default navy)</label><br>
+              <input class="form-control"  ng-model="Deck.colorfront" type="color" id="new-deck-color-front" ng-style="{'background':Deck.colorfront}"/>
+            </div>
+            <div class="form-group">
+              <label for="new-deck-color-back"> Card color back (default red)</label><br>
+              <input  class="form-control" ng-model="Deck.colorback" type="color" id="new-deck-color-back" ng-style="{'background':Deck.colorback, 'padding' : '5px'}"/>
+            </div>
+          </div>
+          <div class="row lobster">  
+            <div class="">
+              <button type="submit" class='btn btn-default save menu-item'>Save</button>
+            </div>
+            your pending deck is {{Deck}}
+          </div>
+        </form>
       </div>
-      <div class="row lobster">
-        <div class="col-sm-3">
-          <label for="new-deck-color-front">Color front (default navy)</label><br>
-          <input ng-model="Deck.colorfront" type="color" id="new-deck-color-front" ng-style="{'background':Deck.colorfront}"/>
-        </div>
-        <div class="col-sm-3">
-          <label for="new-deck-color-back">Color back (default red)</label><br>
-          <input ng-model="Deck.colorback" type="color" id="new-deck-color-back" ng-style="{'background':Deck.colorback, 'padding' : '5px'}"/>
 
-        </div>
-        <div class="col-sm-3">
-          <button type="submit" class='btn btn-default save menu-item'>Save</button>
-        </div>
-        your pending deck is {{Deck}}
+    
+      <div class="row">
       </div>
-    </form>
-  </div>
-  <hr>
-  <div class="row">
-   <!--  <div class="col-sm-4"> -->
-  <!--     <form name="deckFilter">
-        <label for="selectDeck">Select a Deck</label>
-        <select name="deckFilter" id="deckFilter" ng-model="data.deckFilter">
-          <option ng-repeat="option in cards" value="{{option.deck}}">{{option.deck}}</option>
-        </select>
-      </form>
+
+      <section class="container-fluid" >
+        <div class="row">
+          <div class='col-xs-6 col-md-4 col-lg-3 text-center' ng-repeat="deck in decks" >
+          <!-- ng-click="scenario == 'make cards'" --> 
+            <div class="deck" ng-click="getCards(deck.id)" ui-sref="cards({id: deck.id}) ">
+              <div class='pull-right ' ng-click="deleteDeck(deck.id)" > 
+                <a href="#" ><i class='glyphicon glyphicon-remove'></i></a>
+              </div>
+              <h4 >{{deck.attributes.name}}</h4>
+              <h5 >{{deck.attributes.description}}</h5>
+              <i class="glyphicon glyphicon-plus"></i>Add Cards to this Deck
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="col-sm-4">
-      <tt>deckFilter = {{data.deckFilter}}</tt> -->
-    <!-- </div> -->
-  </div>
-  <hr>
-
-
-  <section class="container-fluid" >
-    <div class="row">
-      <div class='col-xs-6 col-md-4 col-lg-3 text-center' ng-repeat="deck in decks" ng-click="asking=!asking" ng-show="asking || !asking">
-
-        <div class="deck flipOutX " ng-class="{'answer':answer}" ng-click="answer=!answer" >
-          <div class='pull-right ' ng-click="deleteDeck(deck.attributes.id)">
-              <a href="#" ><i class='glyphicon glyphicon-remove'></i></a>
-          </div>
-          <h4 ng-show="asking" >{{deck.attributes.name}}</h4>
-          <h4 ng-show="!asking" ng-hide="asking" >{{deck.attributes.description}}</h4>
-          
-          </div>
-        </div>
-      </div>
-    </section>
-
   </div>
 
-</div>
-</div>
+  <!-- ng-show="scenario == 'make cards'" ng-hide="scenario == 'make decks'" ui-sref="cards"-->
+
 

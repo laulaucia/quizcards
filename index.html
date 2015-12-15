@@ -22,7 +22,8 @@
           <a ui-sref="home"><img class="qzlogo" src="/images/QuizWiz.svg"></a><br>
           <h6 >make and keep track of <br>your own flashcards</h6>
           <div ng-show="currentUser">
-            <button ui-sref="decks" class="menu-item">Decks</button>
+            <button ui-sref="home" class="menu-item">My Decks</button>
+             <button ui-sref="cards" class="menu-item">Make cards</button>
             <h6>Welcome {{currentUser.get('username')}} !
               <br> You are logged in</h6>
               <button  class="menu-item" ng-click="logOut(user)">Log out</button>
@@ -71,7 +72,7 @@
 
 
         <!-- ANGULAR APP INSERTER HERE -->
-        <div ui-view class="col-xs-8 col-md-10 content" ng-if="currentUser"></div>
+        <div ui-view class="col-xs-12 col-sm-10 col-sm-offset-1 content" ng-if="currentUser"></div>
          <!--  -->
       </div>
       </div>  

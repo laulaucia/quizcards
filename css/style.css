@@ -1,7 +1,7 @@
 /*PUT YOUR STYLES HERE*/
 
 .qzlogo{
-  width: 170px;
+  width: 50%;
   position: center;
   margin-top: 10px;
   display: inline-block;
@@ -116,7 +116,7 @@ form input:active{
   color: white;
   border-radius: 20px;
   font-family: 'Lobster', cursive;
-  width: 8em;
+  width: 9em;
   margin: 0 5px;
   border: 0;
   cursor: pointer;
@@ -166,7 +166,7 @@ form input:active{
 /*  Media Queries
 =====================================*/
 
-@media (min-width: 768px){
+/*@media (min-width: 768px){
   .namethings{
     width:initial;
     height: initial;
@@ -179,3 +179,4 @@ form input:active{
     display: none;
   }
 }
+*/

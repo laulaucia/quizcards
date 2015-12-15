@@ -9,24 +9,52 @@ angular.module('quizCards')
 				return query.find();
 			}
 
-			factory.allInDeck = function(deck){
+			factory.allInDeck = function(d){
+				var DeckObject = Parse.Object.extend("Deck");
 				var CardObject = Parse.Object.extend("Card");
+				var currentDeck = new DeckObject();
+				currentDeck.id = d;
 				var query = new Parse.Query(CardObject);
-				console.log( "deckis: ", deck);
-				query.equalTo("DeckId", deck);
-				return query.find();
+				query.include("Card");
+				query.equalTo("DeckId", currentDeck);
+				 return query.find({
+					success: function(cards){
+						console.log(cards[0].attributes);
+					}
+				});
+				// console.log( "deck id is: ", d);
+				// var CurrentDeck = query.get("DeckId", d);
+				// console.log(CurrentDeck);
+				// query.equalTo("DeckId", d);
+				//  from docs : var user = game.get("createdBy");
+				
+
+				//factory.findDeck = function(deckId){
+			// 	var DeckObject = Parse.Object.extend("Deck");
+			// 	var query = new Parse.Query(DeckObject);
+			// 	query.get(deckId);
+			// 	return DeckObject;
+			// } 
+				// return query.find();
 				
 			}
+
+// Assume Parse.Object myPost was previously created.
+// var query = new Parse.Query(Comment);
+// query.equalTo("post", myPost);
+// query.find({
+//   success: function(comments) {
+//     // comments now contains the comments for myPost
+//   }
+// });
 
 			factory.save = function(card){
 				var CardObject = Parse.Object.extend("Card");
 				var newCard = new CardObject(); // instantiating card object instance
 				newCard.set('prompt', card.prompt);
 				newCard.set('answer', card.answer);
-				newCard.set('parent', Deck);
+				newCard.set('parent', card.DeckId);
 				newCard.set("createdBy", Parse.User.current());
-				newCard.set('colorfront', card.colorfront);
-				newCard.set('colorback', card.colorback);
 				console.log("Card is: ", card);
 				return newCard.save();
 			}
