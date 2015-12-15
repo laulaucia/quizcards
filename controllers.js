@@ -10,9 +10,12 @@ var app = angular.module('quizCards');
   app.controller("cardsController", ['$scope', 'Card','Deck','$stateParams',
     function ($scope, Card, Deck, $stateParams){
       $scope.newCard = {};
+      $scope.Card= {};
       $scope.scenario = "make cards";
       var d = $stateParams.id;
+      console.log($stateParams);
       $scope.deckID = d;
+      console.log(d);
 
       // callbacks for Parse queries
       function getCardsSuccess(results){
@@ -76,7 +79,7 @@ var app = angular.module('quizCards');
       $scope.$on("logged_in", function(event, message) {
         $scope.message = message;
           console.log("logged in message is:", $scope.message);
-          $scope.getCards();
+          $scope.getCards(d);
       });
 
       // Listening for logout from root scope controller, clears posts
@@ -196,7 +199,7 @@ app.controller("decksController", ['$scope', 'Deck', 'Card', '$stateParams',
       $scope.$on("logged_in", function(event, message) {
         $scope.message = message;
           console.log("logged in message is:", $scope.message);
-          $scope.getCards();
+          $scope.getCards(d);
       });
 
       // Listening for logout from root scope controller, clears decks

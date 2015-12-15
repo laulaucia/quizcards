@@ -19,7 +19,7 @@ angular.module('quizCards')
 				query.equalTo("DeckId", currentDeck);
 				 return query.find({
 					success: function(cards){
-						console.log(cards[0].attributes);
+						console.log(cards[0].attributes.DeckId.id);
 					}
 				});
 				// console.log( "deck id is: ", d);
@@ -53,7 +53,7 @@ angular.module('quizCards')
 				var newCard = new CardObject(); // instantiating card object instance
 				newCard.set('prompt', card.prompt);
 				newCard.set('answer', card.answer);
-				newCard.set('parent', card.DeckId);
+				newCard.set('DeckId', card.DeckId);
 				newCard.set("createdBy", Parse.User.current());
 				console.log("Card is: ", card);
 				return newCard.save();
