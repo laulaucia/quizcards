@@ -54,7 +54,8 @@ var app = angular.module('quizCards', ['ui.router']);
     $stateProvider
       .state('home',{
         url: '/',
-        templateUrl: 'views/templates/decks-index.html'
+        templateUrl: 'views/templates/decks-index.html',
+        controller: 'decksController'
         
       })
       .state('cards', {

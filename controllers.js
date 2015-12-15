@@ -15,7 +15,8 @@ var app = angular.module('quizCards');
       var d = $stateParams.id;
       console.log($stateParams);
       $scope.deckID = d;
-      console.log(d);
+      $scope.currentDeck = Deck.findDeck(d);
+      console.log( " this is the Card in the card controller ", $scope.Card);
 
       // callbacks for Parse queries
       function getCardsSuccess(results){
@@ -57,6 +58,7 @@ var app = angular.module('quizCards');
       $scope.getCards = function(d) {
         $scope.newCard = {};
         console.log("this is the d", d);
+
         Card.allInDeck(d)
         .then(getCardsSuccess, getCardsError);
       };
@@ -65,7 +67,7 @@ var app = angular.module('quizCards');
 
       $scope.createCard = function(card){
         console.log("hey im tryna make a card ", card);
-        Card.save(card).then(createCardSuccess, createCardError);
+        Card.save(card, $scope.currentDeck).then(createCardSuccess, createCardError);
 
       };
 

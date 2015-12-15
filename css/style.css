@@ -2,6 +2,7 @@
 
 .qzlogo{
   width: 50%;
+  max-width: 200px;
   position: center;
   margin-top: 10px;
   display: inline-block;
@@ -50,29 +51,19 @@
   border-color: #202060;
   color: white;
   padding: 1rem;
-  min-height: 16rem;
+  min-height: 8rem;
   position: relative;
   margin-bottom: 10px;
   border-radius: 30px;
   animation-name: flipInX;
   animation-duration: 1s;
 }
-
-.deck h6 {
+.deck h4{
   position: absolute;
-  font-size: 0.8rem;
-  margin-top: 1.618rem;
-  opacity: 0.5;
-  bottom: 0.618rem;
-  left: 1rem;
+  top: 20px;
 }
-.deck h6:after {
-  font-size: 60%;
-  margin-left: 1px;
-}
-
 .deck:hover{
-  background: blue;
+  background: blue !important;
 }
 
 .deck:active{
@@ -103,10 +94,9 @@ form input:active{
 }*/
 
 .navigation{
-  /*position: fixed;
-  display: inline-block;*/
+  position: relative;
   z-index: 1;
-  /*background: green;*/
+
 
 }
 
@@ -166,17 +156,31 @@ form input:active{
 /*  Media Queries
 =====================================*/
 
-/*@media (min-width: 768px){
-  .namethings{
-    width:initial;
-    height: initial;
-    float: initial;
+@media (min-width: 768px){
+  .qzlogo{
+    max-width: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
   }
-  .special{
+  .tagline{
+    font-size: 2em;
+    position: absolute;
+    left: 240px;
+    top: 50px;
+
+  }
+  .navigation{
+    position: absolute;
+    height: 100px;
     width: 100%;
+
   }
-  .extra {
-    display: none;
+  .navbuttons{
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
   }
+  .content{ padding-top: 170px;}
 }
-*/

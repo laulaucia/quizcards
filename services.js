@@ -19,7 +19,8 @@ angular.module('quizCards')
 				query.equalTo("DeckId", currentDeck);
 				 return query.find({
 					success: function(cards){
-						console.log(cards[0].attributes.DeckId.id);
+						if (cards.length > 0){console.log(cards[0].attributes.DeckId.id)}
+							else{console.log("there are no cards in deck ", d)}
 					}
 				});
 				// console.log( "deck id is: ", d);
@@ -48,12 +49,12 @@ angular.module('quizCards')
 //   }
 // });
 
-			factory.save = function(card){
+			factory.save = function(card, deckId){
 				var CardObject = Parse.Object.extend("Card");
 				var newCard = new CardObject(); // instantiating card object instance
 				newCard.set('prompt', card.prompt);
 				newCard.set('answer', card.answer);
-				newCard.set('DeckId', card.DeckId);
+				newCard.set('DeckId', deckId);
 				newCard.set("createdBy", Parse.User.current());
 				console.log("Card is: ", card);
 				return newCard.save();
@@ -103,8 +104,12 @@ angular.module('quizCards')
 			factory.findDeck = function(deckId){
 				var DeckObject = Parse.Object.extend("Deck");
 				var query = new Parse.Query(DeckObject);
-				query.get(deckId);
-				return DeckObject;
+				query.get(deckId)
+					.then(function(deck){
+						return deck;
+					});
+				// console.log('i am the finddeck', deckId);
+				// return DeckObject;
 			}
 
 			factory.destroy = function(deckId, success, err) {
