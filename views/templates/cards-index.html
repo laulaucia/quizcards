@@ -4,10 +4,9 @@
 
   <div class="view">
     
-
     <section class="container-fluid" >
-      <div class="row" >
-      
+      <div class="row cardcontainer" >
+      <h3 class="lobster text-center">Here are your cards for deck: {{deckID}}</h3><br>
         <div class='col-xs-6 col-md-4 col-lg-3 text-center' ng-repeat="card in cards" ng-click="asking=!asking" ng-show="asking || !asking">
 
           <div class="card flipOutX " ng-class="{'answer':answer}" ng-click="answer=!answer" >

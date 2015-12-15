@@ -12,11 +12,12 @@ var app = angular.module('quizCards');
       $scope.newCard = {};
       $scope.Card= {};
       $scope.scenario = "make cards";
-      var d = $stateParams.id;
-      console.log($stateParams);
-      $scope.deckID = d;
-      $scope.currentDeck = Deck.findDeck(d);
-      console.log( " this is the Card in the card controller ", $scope.Card);
+      var dID = $stateParams.id;
+      $scope.deckID = dID;
+      $scope.currentDeck = {};
+      // Deck.findDeck(dID);
+      // console.log("this is the current deck on controller load", currentDeck);
+
 
       // callbacks for Parse queries
       function getCardsSuccess(results){
@@ -44,29 +45,37 @@ var app = angular.module('quizCards');
       function createCardSuccess (card){
         console.log("new object created with object id: " + card.id);
         $scope.newCard = {}; // clear unput
-        $scope.getCards(d); // refresh $scope.cards
+        $scope.getCards(dID); // refresh $scope.cards
       }
 
       function createCardError (card, error){
-        alert("failed to create new object, with error code " + error.message);
+        alert("failed to create new object, with error code " + error);
       }
 
 
       /////// CONTROLLER FUNCTIONS
 
-      
-      $scope.getCards = function(d) {
-        $scope.newCard = {};
-        console.log("this is the d", d);
+      $scope.findDeck = function(dID){
+      	$scope.currentDeck = {};
+      	console.log("this is the deck ID in find deck", dID);
+      	Deck.findDeck(dID);
+      };
 
-        Card.allInDeck(d)
+      
+      $scope.getCards = function(dID) {
+        $scope.newCard = {};
+        console.log("this is the deck ID in get cards", dID);
+        Card.allInDeck(dID)
         .then(getCardsSuccess, getCardsError);
       };
 
-      $scope.getCards(d); /// load cards when controller loads
+      $scope.getCards(dID); /// load cards when controller loads
 
-      $scope.createCard = function(card){
-        console.log("hey im tryna make a card ", card);
+      $scope.createCard = function(card, dID){
+      	
+   		console.log("this is the current deck create card", $scope.currentDeck);
+      	console.log("hey im tryna make a card ", card);
+        console.log("this is the current deck in create card", dID);
         Card.save(card, $scope.currentDeck).then(createCardSuccess, createCardError);
 
       };
@@ -160,25 +169,15 @@ app.controller("decksController", ['$scope', 'Deck', 'Card', '$stateParams',
 
       /////// DECK CONTROLLER FUNCTIONS
 
-  	$scope.getCards = function(d) {
+  	$scope.getCards = function(dID) {
         $scope.newCard = {};
-        console.log("this is the d", d);
-        Card.allInDeck(d)
+        console.log("this is the dID", dID);
+        Card.allInDeck(dID)
         .then(getCardsSuccess, getCardsError);
       };
 
-      // // Assume Parse.Object myPost was previously created.
-// var query = new Parse.Query(Comment);
-// query.equalTo("post", myPost);
-// query.find({
-//   success: function(comments) {
-//     // comments now contains the comments for myPost
-//   }
-// });
-
       $scope.getDecks = function() {
         $scope.newDeck = {};
-        console.log($scope.newDeck);
         Deck.all()
         .then(getDecksSuccess, getDecksError);
       };
@@ -201,7 +200,7 @@ app.controller("decksController", ['$scope', 'Deck', 'Card', '$stateParams',
       $scope.$on("logged_in", function(event, message) {
         $scope.message = message;
           console.log("logged in message is:", $scope.message);
-          $scope.getCards(d);
+          $scope.getCards(dID);
       });
 
       // Listening for logout from root scope controller, clears decks
