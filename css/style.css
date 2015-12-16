@@ -49,7 +49,7 @@
 .deck {
   background: #202060;
   border-color: black;
-  color: white;
+  color: rgba(255,255,255, .7);
   padding: 1rem;
   min-height: 8rem;
   position: relative;
@@ -57,18 +57,47 @@
   border-radius: 15px;
   animation-name: flipInX;
   animation-duration: 1s;
+  overflow: hidden;
 }
 .deck h4{
-  position: absolute;
+  
   top: 20px;
+  font-size: 1.7em
+}
+
+.deck .decktitle::before{
+  content: '\f217';
+  font-family: Ionicons;
+  font-weight: bold;
+  font-size: 30;
+  position: absolute;
+  left: -30%;
+
+
+}
+.deck .decktitle{
+  position: relative;
+  height: 50px;
+
 }
 .deck:hover{
-  background: black !important;
+  /*background: black !important;*/
+  color: white;
+  transition: .2s;
+  
 }
 
 .deck:active{
-  background: green;
+  background: black;
 }
+.deck .decktitle:hover::before{
+  left: 10%;
+  transition: .45s;
+
+
+}
+
+
 
 /*  Form Styles
 =====================================*/
@@ -77,10 +106,12 @@ form input{
     padding: 10px;
     border-radius: 20px;
     margin-bottom: 10px;
+    outline: none;
 }
 
 form input:active{
   border-radius: 20px;
+  outline: none;
 }
 
 .btn .save{
@@ -111,16 +142,17 @@ form input:active{
   border: 0;
   cursor: pointer;
   display: inline-block;
+  outline: 0;
 }
 
 .menu-item:hover{
   color: white;
-  background: #303070;
+  background: #b30000;
 }
 
 .menu-item:active{
   color: white;
-  background: green;
+  background: black;
 }
 
 .menu-item:visited,

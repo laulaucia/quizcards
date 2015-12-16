@@ -2,24 +2,6 @@ angular.module('quizCards')
 	.factory('Card', function(){
 			var factory = {};
 
-			// var Card = Parse.Object.extend("Card", {},{});
-			// Object.defineProperty(Card.prototype, 'prompt',{
-			// 	get: function(){
-			// 		return this.get('prompt');
-			// 	},
-			// 	set: function(aValue){
-			// 		this.set('prompt', aValue);
-			// 	}
-			// });
-			// Object.defineProperty(Card.prototype, 'prompt',{
-			// 	get: function(){
-			// 		return this.get('prompt');
-			// 	},
-			// 	set: function(aValue){
-			// 		this.set('prompt', aValue);
-			// 	}
-			// });
-
 			factory.all = function(){
 				var CardObject = Parse.Object.extend("Card");
 				var query = new Parse.Query(CardObject);
@@ -41,32 +23,10 @@ angular.module('quizCards')
 							else{console.log("there are no cards in deck ", d);}
 					}
 				});
-			// console.log( "deck id is: ", d);
-			// var CurrentDeck = query.get("DeckId", d);
-			// console.log(CurrentDeck);
-			// query.equalTo("DeckId", d);
-			//  from docs : var user = game.get("createdBy");
-				
-				//factory.findDeck = function(deckId){
-			// 	var DeckObject = Parse.Object.extend("Deck");
-			// 	var query = new Parse.Query(DeckObject);
-			// 	query.get(deckId);
-			// 	return DeckObject;
-			// } 
-				// return query.find();
 				
 			};
 
 
-
-			// Assume Parse.Object myPost was previously created.
-			// var query = new Parse.Query(Comment);
-			// query.equalTo("post", myPost);
-			// query.find({
-			//   success: function(comments) {
-			//     // comments now contains the comments for myPost
-			//   }
-			// });
 
 			factory.save = function(card, deck){
 				
@@ -129,9 +89,7 @@ angular.module('quizCards')
 				return deck;
 
 				};
-				
-				// console.log('i am the finddeck', deckId);
-				// return DeckObject;
+
 			
 
 			factory.destroy = function(deckId, success, err) {
