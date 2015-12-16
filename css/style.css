@@ -48,13 +48,13 @@
 }
 .deck {
   background: #202060;
-  border-color: #202060;
+  border-color: black;
   color: white;
   padding: 1rem;
   min-height: 8rem;
   position: relative;
-  margin-bottom: 10px;
-  border-radius: 30px;
+  margin-bottom: 5px;
+  border-radius: 15px;
   animation-name: flipInX;
   animation-duration: 1s;
 }
@@ -63,7 +63,7 @@
   top: 20px;
 }
 .deck:hover{
-  background: blue !important;
+  background: black !important;
 }
 
 .deck:active{

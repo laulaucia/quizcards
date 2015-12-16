@@ -9,7 +9,7 @@
           <div class="row">
             <div class='col-xs-12 col-lg-6 ' ng-repeat="deck in decks" >
             
-              <div class="deck"  ui-sref="cards({id: deck.id}) " ng-style="{'background':deck.attributes.colorback, '.deck:hover':deck.attributes.colorfront }">
+              <div class="deck"  ui-sref="cards({id: deck.id}) " ng-style="{'background':deck.attributes.colorback }">
                 <div class='pull-right ' ng-click="deleteDeck(deck.id)" > 
                   <a href="#" ><i class='glyphicon glyphicon-remove'></i></a>
                 </div><!-- delete button on deck -->
