@@ -69,7 +69,7 @@ angular.module('quizCards')
 			// });
 
 			factory.save = function(card, deckId){
-				console.log("deck id from card factory", deckId);
+				console.log("deck id from card factory", deckId[_result][0]);
 				var CardObject = Parse.Object.extend("Card");
 				var newCard = new CardObject(); // instantiating card object instance
 				newCard.set('prompt', card.prompt);
@@ -122,19 +122,22 @@ angular.module('quizCards')
 
 			factory.findDeck = function(deckId){
 				var DeckObject = Parse.Object.extend("Deck");
+				DeckObject.id = deckId;
 				var query = new Parse.Query(DeckObject);
-				console.log("this is the deck id in finddeck", deckId);
-				query.get("deckId", {
-					success: function(deck){
-						console.log("this is the deck in finddeck", deck);
-						return deck;
-					}
 
-				});
+// 				var post = new Post();
+// 				post.id = "1zEcyElZ80";
+// 				query.equalTo("post", post);
+				console.log("this is the deck id in finddeck", deckId);
+				query.equalTo("Deck", DeckObject); 
+				console.log(DeckObject);
+				return query.find();
+
+				};
 					
 				// console.log('i am the finddeck', deckId);
 				// return DeckObject;
-			};
+			
 
 			factory.destroy = function(deckId, success, err) {
             var DeckObject = Parse.Object.extend("Deck");

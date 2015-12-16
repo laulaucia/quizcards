@@ -15,11 +15,8 @@ var app = angular.module('quizCards');
       var dID = $stateParams.id;
       $scope.deckID = dID;
       $scope.currentDeck = {};
-      // Deck.findDeck(dID);
-      // console.log("this is the current deck on controller load", currentDeck);
+   
 
-
-      // callbacks for Parse queries
       function getCardsSuccess(results){
         var allCards = [];
         $scope.Card = {};
@@ -55,12 +52,14 @@ var app = angular.module('quizCards');
 
       /////// CONTROLLER FUNCTIONS
 
-      $scope.findDeck = function(dID){
+      $scope.findCardDeck = function(dID){
       	$scope.currentDeck = {};
       	console.log("this is the deck ID in find deck", dID);
-      	Deck.findDeck(dID);
+      	$scope.currentDeck = Deck.findDeck(dID);
+      	console.log("this is the current deck found on this page", $scope.currentDeck);
       };
 
+      $scope.findCardDeck(dID);
       
       $scope.getCards = function(dID) {
         $scope.newCard = {};
