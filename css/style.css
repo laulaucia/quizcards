@@ -6,6 +6,8 @@
   position: center;
   margin-top: 10px;
   display: inline-block;
+  animation-name: bounceInDown;
+  animation-duration: 2s;
 }
 
 /*  Card & Deck Styles
@@ -58,6 +60,7 @@
   animation-name: flipInX;
   animation-duration: 1s;
   overflow: hidden;
+  opacity: .7
 }
 .deck h4{
   
@@ -84,6 +87,8 @@
   /*background: black !important;*/
   color: white;
   transition: .2s;
+  opacity: 1;
+
   
 }
 
@@ -101,6 +106,10 @@
 
 /*  Form Styles
 =====================================*/
+.makedeck{
+  animation-name: fadeInRight;
+  animation-duration: 1s;
+}
 
 form input{
     padding: 10px;
