@@ -81,7 +81,8 @@ var app = angular.module('quizCards');
 
       $scope.deleteCard = function(cardId, dID){
         console.log("cardId is: ", cardId);
-        Card.destroy(cardId, $scope.getCards(dID), function(card, error){
+        $scope.currentDeck = Deck.findDeck(dID);
+        Card.destroy(cardId, $scope.getCards($scope.currentDeck), function(card, error){
           console.log("error deleting card: ", error , card);
         });
       };
@@ -190,9 +191,8 @@ app.controller("decksController", ['$scope', 'Deck', 'Card', '$stateParams','$st
 
       };
 
-      $scope.deleteDeck = function(deckId){
+      $scope.deleteDeck = function($event, deckId){
         console.log("deckId is: ", deckId);
-        console.log("this is the current state", $state);
         Deck.destroy(deckId, $scope.getDecks, function(deck, error){
           console.log("error deleting deck: ", error , deck);
           $state.go('home');

@@ -1,15 +1,16 @@
 
-
-
-
   <div class="view">
-    
+
+  <h3 class="lobster deckname text-center">{{currentDeck.attributes.name}}:</h3>
+  <h4 class=" text-center"> {{currentDeck.attributes.description}}</h4>
+   <hr>
+
+  <div class="showcards col-xs-12 col-sm-8 text-center">  
     <section class="container-fluid" >
-      <div class="row cardcontainer" >
-      <h3 class="lobster text-center">{{currentDeck.attributes.name}}:<br> {{currentDeck.attributes.description}}</h3>
       
-      
-        <div class='col-xs-6 col-md-4 col-lg-3 text-center' ng-repeat="card in cards" ng-click="asking=!asking" ng-show="asking || !asking" >
+      <h3 class="lobster">My Cards</h3>
+        <div class="row">
+        <div class='col-xs-12 col-md-6' ng-repeat="card in cards" ng-click="asking=!asking" ng-show="asking || !asking" >
 
           <div class="card flipOutX " ng-class="{'answer':answer}" ng-click="answer=!answer" ng-style="{'background':currentDeck.attributes.colorback }" >
           
@@ -18,16 +19,18 @@
             </div>
             <h4 ng-show="asking">{{card.attributes.answer}}</h4>
             <h4 ng-show="!asking" ng-hide="asking" >{{card.attributes.prompt}}</h4>
-            <h6>{{card.attributes.deck}}</h6>
+            <h6>Created: {{card.attributes.createdAt | date:'MM/dd/yyyy @ h:mma'}}</h6>
+          </div>
           </div>
         </div>
-      </div>
+      <hr>
     </section>
+  </div>
+    
 
-    <h3 class="text-center lobster" >Make a new card!</h3>
-
-    <div class="text-center">
-      <form class="col-xs-12 col-sm-6 col-sm-offset-3 name="newCardForm" ng-submit="createCard(Card, currentDeck)">
+    
+      <form class="col-xs-12 col-sm-4 text-center cardform" name="newCardForm" ng-submit="createCard(Card, currentDeck)">
+      <h3 class="text-center lobster"> Why dont you make some new cards?</h3>
 
         <div class="row lobster ">
           <div class="form-group col-xs-12">
@@ -48,7 +51,7 @@
           your pending card is {{Card}}
         </div><!-- end of row -->
       </form>
-    </div>
+    
     
     
   </div>

@@ -80,7 +80,7 @@ var app = angular.module('quizCards', ['ui.router']);
         controller: 'cardsController'
 
         
-      })
+      });
 
       $urlRouterProvider.otherwise("/");
 

@@ -103,7 +103,11 @@
   left: 10%;
   transition: .45s;
 
+}
 
+.well{
+  background: white;
+  border-style: none;
 }
 
 
@@ -232,4 +236,8 @@ form input:active{
 }
 .cardcontainer{
   padding-top: 50px;
+}
+
+.cardform, .makedeck{
+  border-left: 1px dashed lightgrey;
 }

@@ -11,7 +11,7 @@
             
               <div class="deck"  ui-sref="cards({id: deck.id})" ng-style="{'background':deck.attributes.colorback }">
 
-                <div class='pull-right' ng-really-message="Are you sure you want to delete this deck?"  ng-really-click=" deleteDeck(deck.id) "  > 
+                <div class='pull-right' ng-really-message="Are you sure you want to delete this deck?"  ng-really-click=" deleteDeck($event, deck.id)"  > 
                   <a href="#" ><i class='glyphicon glyphicon-remove'></i></a>
                 </div><!-- delete button on deck -->
 
@@ -21,11 +21,11 @@
             </div>
           </div>
         </section>
+      <hr>
       </div>
-
-      <div class="makedeck col-xs-12 col-sm-6">
+      <div class=" col-xs-12 col-sm-6 makedeck">
         <h3 class="text-center lobster"> Why dont you make a new Deck?</h3>
-        <form  class="col-xs-12 col-lg-6 col-lg-offset-3 text-center"name="newDeckForm" ng-submit="createDeck(Deck)">
+        <form  class="col-xs-12 col-lg-6 col-lg-offset-3 text-center "name="newDeckForm" ng-submit="createDeck(Deck)">
 
           <div class="row lobster">
             <div class="form-group">
