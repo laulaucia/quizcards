@@ -7,8 +7,8 @@ var app = angular.module('quizCards');
   app.controller('MainCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     // INITIALIZATION AND NAVBAR LOGIC
   }]);
-  app.controller("cardsController", ['$scope', 'Card','Deck','$stateParams',
-    function ($scope, Card, Deck, $stateParams){
+  app.controller("cardsController", ['$scope', 'Card','Deck','$stateParams', '$state',
+    function ($scope, Card, Deck, $stateParams, $state){
       $scope.newCard = {};
       $scope.Card= {};
       $scope.scenario = "make cards";
@@ -79,9 +79,9 @@ var app = angular.module('quizCards');
 
       };
 
-      $scope.deleteCard = function(cardId){
+      $scope.deleteCard = function(cardId, dID){
         console.log("cardId is: ", cardId);
-        Card.destroy(cardId, $scope.getCards, function(card, error){
+        Card.destroy(cardId, $scope.getCards(dID), function(card, error){
           console.log("error deleting card: ", error , card);
         });
       };
@@ -104,12 +104,13 @@ var app = angular.module('quizCards');
 //  DECKS THINGS!
 
 
-app.controller("decksController", ['$scope', 'Deck', 'Card', '$stateParams',
-    function ($scope, Deck, Card, $stateParams){
+app.controller("decksController", ['$scope', 'Deck', 'Card', '$stateParams','$state',
+    function ($scope, Deck, Card, $stateParams, $state){
       $scope.newDeck = {};
       $scope.currentDeck = Parse.Deck;
       $scope.scenario = "make decks";
-      // $scope.cardsInDeck = [];
+      
+      
 
       // callbacks for Parse queries
       function getDecksSuccess(results){
@@ -191,8 +192,10 @@ app.controller("decksController", ['$scope', 'Deck', 'Card', '$stateParams',
 
       $scope.deleteDeck = function(deckId){
         console.log("deckId is: ", deckId);
+        console.log("this is the current state", $state);
         Deck.destroy(deckId, $scope.getDecks, function(deck, error){
           console.log("error deleting deck: ", error , deck);
+          $state.go('home');
         });
       };
       // Listening for user logging in to populate decks

@@ -10,6 +10,10 @@
   animation-duration: 2s;
 }
 
+.body{
+  font-family: 'Cabin', sans-serif;
+}
+
 /*  Card & Deck Styles
 =====================================*/
 
@@ -60,7 +64,7 @@
   animation-name: flipInX;
   animation-duration: 1s;
   overflow: hidden;
-  opacity: .7
+  opacity: .8;
 }
 .deck h4{
   
@@ -116,6 +120,7 @@ form input{
     border-radius: 20px;
     margin-bottom: 10px;
     outline: none;
+    font-family: 'Cabin', sans-serif;
 }
 
 form input:active{

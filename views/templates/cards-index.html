@@ -8,11 +8,16 @@
       <div class="row cardcontainer" >
       <h3 class="lobster text-center">{{currentDeck.attributes.name}}:<br> {{currentDeck.attributes.description}}</h3>
       
+      
         <div class='col-xs-6 col-md-4 col-lg-3 text-center' ng-repeat="card in cards" ng-click="asking=!asking" ng-show="asking || !asking" >
+
+          <div ng-if="cards.length = 0" class="lobster">
+            No cards here! Why dont you add some?
+          </div>
 
           <div class="card flipOutX " ng-class="{'answer':answer}" ng-click="answer=!answer" ng-style="{'background':currentDeck.attributes.colorback }" >
           
-            <div class='pull-right ' ng-click="deleteCard(card.id)" >
+            <div class='pull-right' ng-really-message="Are you sure you want to delete this card?" ng-really-click="deleteCard(card.id)" >
               <a href="#" ><i class='glyphicon glyphicon-remove'></i></a>
             </div>
             <h4 ng-show="asking" ">{{card.attributes.answer}}</h4>

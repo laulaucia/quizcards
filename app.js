@@ -50,6 +50,22 @@ var app = angular.module('quizCards', ['ui.router']);
       // INITIALIZATION AND NAVBAR LOGIC
     }]);
 
+ //* A generic confirmation for risky actions.
+ 
+  app.directive('ngReallyClick', [function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('click', function() {
+                var message = attrs.ngReallyMessage;
+                if (message && confirm(message)) {
+                    scope.$apply(attrs.ngReallyClick);
+                }
+            });
+        }
+    };
+}]);
+
   app.config(['$stateProvider', '$locationProvider','$urlRouterProvider', function($stateProvider, $locationProvider, $urlRouterProvider) {
     $stateProvider
       .state('home',{
